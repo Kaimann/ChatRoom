@@ -1,13 +1,11 @@
 package server;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.*;
 import java.net.*;
 import java.awt.*;
 import javax.swing.*;
 
-public class Server extends JFrame{
+    class Server extends JFrame{
     private JTextField userInputText;
     private JTextArea chatWindow;
     private ObjectOutputStream outputStream;
@@ -15,16 +13,13 @@ public class Server extends JFrame{
     private ServerSocket serverSocket;
     private Socket connection;
 
-    public Server(){
+    Server(){
         super("Серверная часть");
         userInputText = new JTextField();
         userInputText.setEditable(false);
-        userInputText.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                sendMessage(e.getActionCommand());
-                userInputText.setText("");
-            }
+        userInputText.addActionListener(e -> {
+            sendMessage(e.getActionCommand());
+            userInputText.setText("");
         });
         add(userInputText, BorderLayout.NORTH);
         chatWindow = new JTextArea();
@@ -34,10 +29,10 @@ public class Server extends JFrame{
         setVisible(true);
     }
     //настройка и запуск серверной части программы
-    public void startServer(){
+     void startServer(){
         try {
             serverSocket = new ServerSocket(7777, 100);
-            while (true){
+            while(true){
                 try {
                   waitForConnection();
                   setupStreams();
@@ -111,23 +106,13 @@ public class Server extends JFrame{
     //обновление окна чата
     private void showMessage(final String text){
         SwingUtilities.invokeLater(
-                new Runnable() {
-                    @Override
-                    public void run() {
-                        chatWindow.append(text);
-                    }
-                }
+                () -> chatWindow.append(text)
         );
     }
     //установка прав на ввод данных
     private void readyToType(final boolean tof){
         SwingUtilities.invokeLater(
-                new Runnable() {
-                    @Override
-                    public void run() {
-                        userInputText.setEditable(tof);
-                    }
-                }
+                () -> userInputText.setEditable(tof)
         );
     }
 }

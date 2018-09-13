@@ -3,10 +3,9 @@ package client;
 import java.io.*;
 import java.net.*;
 import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
 
-public class Client extends JFrame {
+    class Client extends JFrame {
     private JTextField userInputText;
     private JTextArea chatWindow;
     private ObjectOutputStream outputStream;
@@ -16,18 +15,15 @@ public class Client extends JFrame {
     private Socket socket;
 
     //конструктор
-    public Client(String host){
+    Client(String host){
         super("Клиентская часть");
         serverIp = host;
         userInputText = new JTextField();
         userInputText.setEditable(false);
         userInputText.addActionListener(
-                new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        sendMessage(e.getActionCommand());
-                        userInputText.setText("");
-                    }
+                e -> {
+                    sendMessage(e.getActionCommand());
+                    userInputText.setText("");
                 }
         );
         add(userInputText, BorderLayout.NORTH);
@@ -38,7 +34,7 @@ public class Client extends JFrame {
         setVisible(true);
     }
     //запуск клиента
-    public void startClient(){
+    void startClient(){
         try {
             connectToServer();
             setUpStreams();
@@ -106,23 +102,13 @@ public class Client extends JFrame {
     //обновление окна чата
     private void showMessage(final String text){
         SwingUtilities.invokeLater(
-                new Runnable() {
-                    @Override
-                    public void run() {
-                        chatWindow.append(text);
-                    }
-                }
+                () -> chatWindow.append(text)
         );
     }
     //установка прав на ввод текста
     private void readyToType(final boolean tof){
         SwingUtilities.invokeLater(
-                new Runnable() {
-                    @Override
-                    public void run() {
-                        userInputText.setEditable(tof);
-                    }
-                }
+                () -> userInputText.setEditable(tof)
         );
     }
 }
