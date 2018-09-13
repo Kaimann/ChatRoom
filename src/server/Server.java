@@ -81,7 +81,7 @@ import javax.swing.*;
     }
     //закрываем сокеты и потоки, когда пользователь начатился
     private void closeConnection(){
-        showMessage("\nЗакрытие соединения...");
+        showMessage("\nЗакрытие соединения...\n");
         readyToType(false);
         try {
             outputStream.close();
