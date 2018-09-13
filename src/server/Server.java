@@ -1,3 +1,5 @@
+package server;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
@@ -26,6 +28,7 @@ public class Server extends JFrame{
         });
         add(userInputText, BorderLayout.NORTH);
         chatWindow = new JTextArea();
+        chatWindow.setBackground(Color.LIGHT_GRAY);
         add(new JScrollPane(chatWindow));
         setSize(300, 600);
         setVisible(true);
