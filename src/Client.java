@@ -56,7 +56,7 @@ public class Client extends JFrame {
     private void connectToServer() throws IOException{
         showMessage("Пытаемся подключиться, ожидай...");
         socket = new Socket(InetAddress.getByName(serverIp), 7777);
-        showMessage("Теперь ты подключен к: " + socket.getInetAddress().getHostName());
+        showMessage("\nТеперь ты подключен к: " + socket.getInetAddress().getHostName());
     }
     //настройка потоков для отправки и получения сообщений
     private void setUpStreams()throws IOException{

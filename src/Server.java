@@ -14,7 +14,7 @@ public class Server extends JFrame{
     private Socket connection;
 
     public Server(){
-        super("Серверная часть.");
+        super("Серверная часть");
         userInputText = new JTextField();
         userInputText.setEditable(false);
         userInputText.addActionListener(new ActionListener() {
@@ -56,7 +56,7 @@ public class Server extends JFrame{
     private void waitForConnection() throws IOException{
         showMessage("Ожидание подключения клиентов...\n");
         connection = serverSocket.accept();
-        showMessage("Соединён с \n" + connection.getInetAddress().getHostName());
+        showMessage("Соединён с: " + connection.getInetAddress().getHostName());
     }
     //настройка потоков для отправки и получения данных
     private void setupStreams() throws IOException{
@@ -67,7 +67,7 @@ public class Server extends JFrame{
     }
     //обработка данных во время общения
     private void whileChatting()throws IOException{
-        String message = "Вы подключены!!!";
+        String message = "Вы подключены!!!\n";
         sendMessage(message);
         readyToType(true);
         do{
